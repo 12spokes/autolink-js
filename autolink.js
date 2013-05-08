@@ -10,8 +10,9 @@
     link_attributes = '';
     option = options[0];
     url_pattern = /(^|\s)(\b(https?|ftp):\/\/[\-A-Z0-9+\u0026@#\/%?=~_|!:,.;]*[\-A-Z0-9+\u0026@#\/%=~_|])/gi;
+    email_pattern = /(^|\s)(\b[\w.!#\$%+-]+@[\w-]+(?:\.[\w-]+)+)/gi;
     if (!(options.length > 0)) {
-      return this.replace(url_pattern, "$1<a href='$2'>$2</a>");
+      return this.replace(url_pattern, "$1<a href='$2'>$2</a>").replace(email_pattern, "$1<a href='mailto:$2'>$2</a>");
     }
     if ((option['callback'] != null) && typeof option['callback'] === 'function') {
       callbackThunk = option['callback'];
